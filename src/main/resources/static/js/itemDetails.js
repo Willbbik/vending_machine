@@ -111,7 +111,7 @@ function itemBuy(userName, itemName, inputPrice, inputQuantity){
     location.reload();
 }
 
-// 구매 기록
+// 자판기 이용자의 구매 내역 추가
 function saveBuyRecode(userName, itemName, inputQuantity){
 
     let recode = JSON.parse(sessionStorage.getItem("buyRecode"));
@@ -127,11 +127,10 @@ function saveBuyRecode(userName, itemName, inputQuantity){
     sessionStorage.setItem("buyRecode", JSON.stringify(recode));
 }
 
-// 잔돈 기록
+// 잔돈 기록 추가
 function saveChangeRecode(userName, itemName, inputPrice, totalPrice){
 
     let item = JSON.parse(sessionStorage.getItem(itemName));
-
     let change = inputPrice - totalPrice;
     let changeRecode = item.changeRecode;
 

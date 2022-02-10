@@ -18,8 +18,8 @@ $(function(){
         // 상품 목록에 상품 담기
         let itemNames =  JSON.parse(sessionStorage.getItem("itemNames"));
         if(itemNames == null) itemNames = new Array();
-
         itemNames.push(itemName);
+
         sessionStorage.setItem("itemNames", JSON.stringify(itemNames));
         sessionStorage.setItem(itemName,  JSON.stringify(itemInfo));
 

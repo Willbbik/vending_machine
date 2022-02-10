@@ -10,7 +10,7 @@ $(function(){
 
 });
 
-// 정산완료 버튼
+// 정산완료
 function complete(){
     showRecode();
     userRanking();
@@ -18,47 +18,45 @@ function complete(){
     updateBestItemPrice();
 }
 
-// 재시작 버튼
+// 재시작
 function restart(){
 
     let userNames = ["유사원", "이대리", "김과장", "박차장"];
     let itemNames = JSON.parse(sessionStorage.getItem("itemNames"));
 
-    // 만원과 잔돈 추가
     $.each(itemNames, function(index, itemName){
         let item = JSON.parse(sessionStorage.getItem(itemName));
         let changeRecode = item.changeRecode;
 
         // 현재 상품의 잔돈 기록이 있다면
-        if(changeRecode != null) {
+        $.each(userNames, function(index, userName){
+            let user = JSON.parse(sessionStorage.getItem(userName));
+            let change = 0;
 
-            $.each(userNames, function(index, userName){
-                let user = JSON.parse(sessionStorage.getItem(userName));
-                let change = 0;
-
+            // 잔돈이 존재할 때
+            if(changeRecode != null){
                 // 잔돈의 주인인지 확인
                 $.each(changeRecode, function(index, recode){
                     if(recode.userName === user.name){
                         change += recode.change;
                     }
                 });
+            }
 
-                // 금액 추가 후 저장
-                user.money += 10000 + change;
-                sessionStorage.setItem(user.name, JSON.stringify(user));
-            });
+            // 사용자 지갑에 금액 추가
+            user.money += 10000 + change;
+            sessionStorage.setItem(user.name, JSON.stringify(user));
+        });
 
-            // 해당 상품의 잔돈기록 & 잔돈금액 초기화
-            delete item.changeRecode;
-            item.change = 0;
-            sessionStorage.setItem(item.itemName, JSON.stringify(item));
-        }
+        // 해당 상품의 잔돈기록 & 잔돈금액 초기화
+        delete item.changeRecode;
+        item.change = 0;
+        sessionStorage.setItem(item.itemName, JSON.stringify(item));
     });
     alert("재시작에 성공하였습니다.");
 }
 
-
-// 자판기 이용 내역
+// 자판기 이용자의 구매내역
 function showRecode(){
 
     let recodeList = JSON.parse(sessionStorage.getItem("buyRecode"));
@@ -77,7 +75,7 @@ function showRecode(){
     $(".buyRecode").html(html);
 }
 
-// 유저 랭킹
+// 이용자 순위
 function userRanking(){
 
     let userNames = ["유사원", "이대리", "김과장", "박차장"];
@@ -88,6 +86,7 @@ function userRanking(){
         userList.push(JSON.parse(user));
     });
 
+    // 구매 횟수 높은 순 정렬
     userList.sort((a,b) => {
         if(a.buyCount > b.buyCount) return -1;
         if(a.buyCount < b.buyCount) return 1;
@@ -108,6 +107,7 @@ function userRanking(){
 // 베스트 상품 선정
 function updateBestItem(){
 
+    // 상품 다 가져와서 목록에 담기
     let itemNames = JSON.parse(sessionStorage.getItem("itemNames"));
     let itemList = new Array();
 
@@ -116,7 +116,7 @@ function updateBestItem(){
         itemList.push(JSON.parse(item));
     });
 
-    // 판매횟수순 정렬
+    // 판매 횟수 높은 순 정렬
     itemList.sort((a,b) => {
         if(a.saleCount > b.saleCount) return -1;
         if(a.saleCount < b.saleCount) return 1;

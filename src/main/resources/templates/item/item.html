@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/">홈</a>
+<div>
+    <table>
+        <tr>
+            <th>상품 이름</th>
+            <th>가격</th>
+            <th>수량</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="itemName" placeholder="상품 이름" autocomplete="off"></td>
+            <td><input type="text" id="itemPrice" placeholder="가격" autocomplete="off"></td>
+            <td><input type="number" id="itemQuantity" placeholder="수량" autocomplete="off" min="1"></td>
+        </tr>
+        <tr>
+            <td><button type="button" id="itemSave">저장</button></td>
+        </tr>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/js/item.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="/">홈</a>
+    <div>
+        <table>
+            <thead>
+                <th>이용자 선택</th>
+                <th>소유 금액</th>
+            </thead>
+            <tbody>
+                <td>
+                    <select class="user" name="user">
+                        <option value="없음">없음</option>
+                        <option value="유사원">유사원</option>
+                        <option value="이대리">이대리</option>
+                        <option value="김과장">김과장</option>
+                        <option value="박차장">박차장</option>
+                    </select>
+                </td>
+                <td>
+                    <span class="money">0</span>
+                </td>
+            </tbody>
+        </table>
+        <br/>
+        <table>
+            <tr>
+                <th>상품이름 : </th>
+                <td class="itemName">상품</td>
+            </tr>
+            <tr>
+                <th>가격 : </th>
+                <td class="price">0</td>
+            </tr>
+            <tr>
+                <th>잔돈 : </th>
+                <td class="change">0</td>
+            </tr>
+            <tr>
+                <th>잔돈 받기 : </th>
+                <td><button type="button" id="takeChange">받기</button></td>
+            </tr>
+            <tr>
+                <th>남은 수량</th>
+                <td class="quantity"></td>
+            </tr>
+            <tr>
+                <th>수량 선택</th>
+                <td><input type="number" id="inputQuantity" min="1"></td>
+            </tr>
+            <tr>
+                <th>총 금액 : </th>
+                <td class="totalPrice">0</td>
+            </tr>
+        </table>
+        <br/>
+        <table>
+            <tr>
+                <th>금액 입력 : </th>
+                <td><input type="text" id="inputPrice"></td>
+            </tr>
+            <tr>
+                <th>구매하기 : </th>
+                <td class="itemBuy">
+                    <button type="button" id="itemBuy">구매하기</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/js/itemDetails.js"></script>
+</body>
+</html>
